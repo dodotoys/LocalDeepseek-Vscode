@@ -1,0 +1,5 @@
+{
+    "key": "ctrl+shift+d",
+    "command": "workbench.action.debug.start",
+    "when": "!inDebugMode"
+} 

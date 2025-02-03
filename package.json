@@ -1,0 +1,86 @@
+{
+  "name": "deepseek-vscode",
+  "displayName": "DeepSeek VSCode Assistant",
+  "description": "VSCode extension for interacting with locally deployed DeepSeek-R1 model",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:deepseek-chat"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "deepseek-vscode.startChat",
+        "title": "Start DeepSeek Chat"
+      },
+      {
+        "command": "deepseek-vscode.changeModel",
+        "title": "Change DeepSeek Model Size"
+      }
+    ],
+    "configuration": {
+      "title": "DeepSeek Assistant",
+      "properties": {
+        "deepseek-vscode.modelSize": {
+          "type": "string",
+          "default": "deepseek-r1:1.5b",
+          "enum": ["deepseek-r1:1.5b", "deepseek-r1:7b", "deepseek-r1:14b"],
+          "enumDescriptions": [
+            "Small model (1.5B) - Requires ~2GB memory",
+            "Medium model (7B) - Requires ~6GB memory",
+            "Large model (14B) - Requires ~10GB memory"
+          ],
+          "description": "Select the size of the DeepSeek model to use"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "deepseek-sidebar",
+          "title": "DeepSeek",
+          "icon": "$(robot)"
+        }
+      ]
+    },
+    "views": {
+      "deepseek-sidebar": [
+        {
+          "type": "webview",
+          "id": "deepseek-chat",
+          "name": "Chat",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "deepseek-chat",
+        "contents": "Welcome to DeepSeek Assistant.\nStart chatting to get AI assistance.",
+        "when": "true"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "debug": "code --extensionDevelopmentPath=\"%CD%\""
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@types/vscode": "^1.80.0",
+    "typescript": "^4.9.0",
+    "@types/node-fetch": "^2.6.4"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9"
+  }
+} 

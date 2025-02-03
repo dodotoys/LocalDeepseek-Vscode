@@ -1,0 +1,9 @@
+deepseek-vscode/
+├── package.json
+├── src/
+│   ├── extension.ts        # 插件入口文件
+│   ├── chatProvider.ts     # 聊天视图提供者
+│   ├── ollamaService.ts    # Ollama API 服务
+│   └── webview/
+│       ├── index.html      # WebView 界面
+│       └── main.js         # WebView 脚本 
